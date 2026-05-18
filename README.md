@@ -261,8 +261,5 @@ Output: the `StratifiedKFold` + `cross_val_score` boilerplate that I adapted for
 Prompt: "Why might Logistic Regression beat Random Forest and Gradient Boosting on a 783-row dataset where the strongest predictors are monotonically related to the outcome?"
 Output: the bias-variance and signal-linearity explanation that appears in the report's "Why the Simplest Model Wins" section. I cross-checked the argument against the lecture material before using it.
 
-**7. Report drafting**
-Prompt: "Draft a final report based on the README and notebook outputs. Plain prose, no italics or bold in the body, no em-dashes, with sections matching the DSA 210 guidelines: motivation, data source, data analysis, findings, limitations, future work."
-Output: the structure and prose of this final report (`DSA210_Final_Report_Ibrahim_Halil_Aydin.docx`). I reviewed every section against the underlying numbers in the notebooks, edited the AI usage disclosure to reflect actual practice, and made stylistic changes to remove AI tells.
 
 No AI tool was used to generate the dataset itself, the hypothesis test p-values, or the model accuracies reported. All numbers come from running the scripts and notebooks on the collected data.
