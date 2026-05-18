@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 collect_data.py
-Clash Royale Match Outcome Prediction — Data Collection Script
+Clash Royale Match Outcome Prediction, Data Collection Script
 DSA210 Term Project
 
 Usage:
@@ -9,8 +9,8 @@ Usage:
     python collect_data.py
 
 Output:
-    data/battles_raw.csv   — raw battle records (add to .gitignore)
-    data/features.csv      — featurized version (safe to upload)
+    data/battles_raw.csv  , raw battle records (add to .gitignore)
+    data/features.csv     , featurized version (safe to upload)
 """
 
 import os
@@ -151,7 +151,7 @@ def parse_battle(battle: dict, player_tag: str, exp_level, battle_count,
         "team_avg_level":            t_deck["avg_level"],
         "opp_avg_level":             o_deck["avg_level"],
         "level_diff":                t_deck["avg_level"] - o_deck["avg_level"],
-        # underleveled_penalty: avg levels below max — lower means more upgraded deck
+        # underleveled_penalty: avg levels below max, lower means more upgraded deck
         "team_underleveled_penalty": t_pen,
         "opp_underleveled_penalty":  o_pen,
         "underleveled_diff":         (t_pen - o_pen) if not (np.isnan(t_pen) or np.isnan(o_pen)) else np.nan,
@@ -291,7 +291,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     print("=" * 55)
-    print("  Clash Royale Data Collection — DSA210")
+    print("  Clash Royale Data Collection, DSA210")
     print("=" * 55)
 
     df_raw = collect()

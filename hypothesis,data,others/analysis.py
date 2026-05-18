@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 analysis.py
-Clash Royale — EDA & Hypothesis Testing
+Clash Royale, EDA & Hypothesis Testing
 DSA210 Term Project
 
 Usage:
@@ -239,7 +239,7 @@ def sig(p): return "✓ SIGNIFICANT" if p < ALPHA else "✗ not significant"
 
 
 def test1_deck_meta_ttest(df):
-    sep("TEST 1 — Deck Meta Score (Two-sample t-test)")
+    sep("TEST 1, Deck Meta Score (Two-sample t-test)")
     if "deck_meta_score_diff" not in df.columns:
         print("  [SKIP] deck_meta_score_diff not available")
         return
@@ -258,7 +258,7 @@ def test1_deck_meta_ttest(df):
 
 
 def test2_trophy_chisquare(df):
-    sep("TEST 2 — Trophy Diff Category vs. Outcome (Chi-square)")
+    sep("TEST 2, Trophy Diff Category vs. Outcome (Chi-square)")
     if "trophy_diff" not in df.columns:
         print("  [SKIP]"); return
 
@@ -291,7 +291,7 @@ def test2_trophy_chisquare(df):
 
 
 def test3_experience_correlation(df):
-    sep("TEST 3 — Experience vs. Outcome (Pearson correlation)")
+    sep("TEST 3, Experience vs. Outcome (Pearson correlation)")
     # Pearson correlation is appropriate here: outcome is binary (0/1),
     # which is a valid numerical variable for Pearson's r.
     # This is equivalent to point-biserial correlation mathematically,
@@ -311,7 +311,7 @@ def test3_experience_correlation(df):
 
 
 def test_bonus(df):
-    sep("BONUS — Elixir Diff & Level Diff (Two-sample t-tests)")
+    sep("BONUS, Elixir Diff & Level Diff (Two-sample t-tests)")
     for col in ["elixir_diff", "level_diff"]:
         if col not in df.columns:
             continue
@@ -328,7 +328,7 @@ def test_bonus(df):
 
 def main():
     print("=" * 55)
-    print("  Clash Royale — EDA & Hypothesis Testing  (DSA210)")
+    print("  Clash Royale, EDA & Hypothesis Testing  (DSA210)")
     print("=" * 55)
     print(f"\nLoading: {DATA_PATH}")
     df = load_data(DATA_PATH)
@@ -337,7 +337,7 @@ def main():
     sep("DATASET SUMMARY")
     print(df.select_dtypes(include=np.number).describe().round(3).to_string())
 
-    sep("EDA — saving plots/ ...")
+    sep("EDA, saving plots/ ...")
     plot_outcome_distribution(df)
     plot_feature_distributions(df)
     plot_winrate_by_trophy_bucket(df)
@@ -351,7 +351,7 @@ def main():
     test3_experience_correlation(df)
     test_bonus(df)
 
-    sep("DONE  —  plots saved to plots/")
+    sep("DONE ,  plots saved to plots/")
 
 
 if __name__ == "__main__":

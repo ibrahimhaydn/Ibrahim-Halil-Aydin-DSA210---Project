@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 add_new_features.py
-Clash Royale — Add New Features Without Re-Collecting Data
+Clash Royale, Add New Features Without Re-Collecting Data
 DSA210 Term Project
 
 Adds to the existing battles_raw.csv and features.csv:
@@ -73,7 +73,7 @@ def build_card_maxlevel_map() -> dict:
     """Fetch /cards and return {card_id: maxLevel}."""
     data = api_get("/cards")
     if not data:
-        print("  [WARN] Could not fetch /cards — using default maxLevel=14")
+        print("  [WARN] Could not fetch /cards, using default maxLevel=14")
         return {}
     mapping = {}
     for c in data.get("items", []):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 compute_meta.py
-Clash Royale — Empirical Card Win Rate & Deck Meta Score
+Clash Royale, Empirical Card Win Rate & Deck Meta Score
 DSA210 Term Project
 
 Reads battles_raw.csv, computes per-card win rates from observed data,
@@ -92,7 +92,7 @@ def print_card_summary(win_rates: dict, card_total: dict, top_n: int = 10):
     print(f"\n  Bottom {top_n} lowest win-rate cards:")
     print(df_cards.tail(top_n).to_string(index=False))
     print(f"\n  Total unique cards tracked: {len(df_cards)}")
-    print(f"  Win rate range: {df_cards['win_rate'].min():.3f} — {df_cards['win_rate'].max():.3f}")
+    print(f"  Win rate range: {df_cards['win_rate'].min():.3f}, {df_cards['win_rate'].max():.3f}")
     print(f"  Win rate std:   {df_cards['win_rate'].std():.4f}")
 
 
@@ -133,7 +133,7 @@ def update_features(df_raw: pd.DataFrame, win_rates: dict) -> pd.DataFrame:
 # ── Main ───────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     print("=" * 55)
-    print("  Computing Empirical Card Win Rates — DSA210")
+    print("  Computing Empirical Card Win Rates, DSA210")
     print("=" * 55)
 
     print(f"\nLoading {RAW_PATH} ...")
@@ -178,10 +178,10 @@ if __name__ == "__main__":
     print(f"    max  = {diff.max():.5f}")
 
     if diff.std() < 0.001:
-        print("\n  ⚠️  Std is still near zero — dataset may be too small")
+        print("\n  ⚠️  Std is still near zero, dataset may be too small")
         print("     for reliable per-card rates. Consider collecting more data.")
     else:
-        print("\n  ✓ Deck meta scores now have real variance — re-run analysis.py")
+        print("\n  ✓ Deck meta scores now have real variance, re-run analysis.py")
 
     print(f"\n✓ {FEAT_PATH} updated.")
     print("  Next step: python analysis.py")

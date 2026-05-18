@@ -13,8 +13,8 @@ Usage:
     python scrape_royaleapi.py
 
 Outputs:
-    data/card_stats_royaleapi.csv   — per-card community stats
-    data/features.csv               — updated with real meta scores
+    data/card_stats_royaleapi.csv  , per-card community stats
+    data/features.csv              , updated with real meta scores
 
 Data Source: https://royaleapi.com/cards/popular (Ladder, last 7 days)
 """
@@ -139,7 +139,7 @@ def get_card_name_to_id_map() -> dict:
     Fetch all cards from CR API, return {normalized_name: card_id} dict.
     """
     if not CR_API_KEY:
-        print("  [WARN] CR_API_KEY not set — cannot map card names to IDs.")
+        print("  [WARN] CR_API_KEY not set, cannot map card names to IDs.")
         return {}
 
     try:
@@ -228,13 +228,13 @@ def update_features(card_stats: dict, usage_stats: dict):
         df_feat.to_csv(FEAT_PATH, index=False)
         print(f"  ✓ {FEAT_PATH} updated ({len(df_feat)} rows, {len(df_feat.columns)} cols)")
     else:
-        print("  [WARN] features.csv row count mismatch — regenerate with collect_data.py")
+        print("  [WARN] features.csv row count mismatch, regenerate with collect_data.py")
 
 
 # ── Fallback: Manual CSV input ─────────────────────────────────────────────
 MANUAL_INSTRUCTIONS = """
 ═══════════════════════════════════════════════════════
-  MANUAL FALLBACK — Copy card stats from RoyaleAPI
+  MANUAL FALLBACK, Copy card stats from RoyaleAPI
 ═══════════════════════════════════════════════════════
 
 If automatic scraping failed, you can manually create
@@ -259,7 +259,7 @@ The script will detect the CSV and use it.
 # ── Main ───────────────────────────────────────────────────────────────────
 def main():
     print("=" * 55)
-    print("  RoyaleAPI Card Stats Enrichment — DSA210")
+    print("  RoyaleAPI Card Stats Enrichment, DSA210")
     print("=" * 55)
 
     os.makedirs("data", exist_ok=True)
@@ -268,7 +268,7 @@ def main():
 
     # Check if manual CSV already exists
     if os.path.exists(STATS_PATH):
-        print(f"\nFound existing {STATS_PATH} — loading ...")
+        print(f"\nFound existing {STATS_PATH}, loading ...")
         df_stats = pd.read_csv(STATS_PATH)
         print(f"  → {len(df_stats)} cards loaded")
 
@@ -324,7 +324,7 @@ def main():
     rates = list(card_stats.values())
     print(f"\n  Card Win Rate Summary:")
     print(f"    Cards tracked : {len(card_stats)}")
-    print(f"    Win rate range: {min(rates):.3f} — {max(rates):.3f}")
+    print(f"    Win rate range: {min(rates):.3f}, {max(rates):.3f}")
     print(f"    Win rate std  : {np.std(rates):.4f}")
 
     # Update features
