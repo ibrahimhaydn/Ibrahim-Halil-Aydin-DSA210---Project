@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ml_models.py
-Clash Royale — Machine Learning Models
+Clash Royale, Machine Learning Models
 DSA210 Term Project
 Usage:
     python ml_models.py                     # uses data/features.csv
@@ -43,7 +43,7 @@ TEST_SIZE    = 0.20
 N_SPLITS     = 5     
 
 # Resolve paths relative to this script's location, not the current working
-# directory — this lets the script run from anywhere (Spyder F5, terminal, etc.)
+# directory, this lets the script run from anywhere (Spyder F5, terminal, etc.)
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(SCRIPT_DIR)            # one level up from scripts/
 DATA_PATH   = sys.argv[1] if len(sys.argv) > 1 else os.path.join(PROJECT_DIR, "data", "features.csv")
@@ -123,7 +123,7 @@ def tune_decision_tree(X_train, y_train):
     """
     'vary max_depth in the range 5 to 30 and min_samples_split between 20 and 100'.
     """
-    sep("HYPERPARAMETER TUNING — Decision Tree (GridSearchCV)")
+    sep("HYPERPARAMETER TUNING, Decision Tree (GridSearchCV)")
     param_grid = {
         "max_depth":         [5, 10, 15, 20, 25, 30, None],
         "min_samples_split": [2, 20, 50, 100],
@@ -179,7 +179,7 @@ def plot_roc_curves(results, y_test):
     ax.plot([0, 1], [0, 1], "k--", lw=1.2, alpha=0.6, label="Random (AUC = 0.500)")
     ax.set_xlabel("False Positive Rate (1 − Specificity)")
     ax.set_ylabel("True Positive Rate (Recall)")
-    ax.set_title("ROC Curves — All Models", fontweight="bold")
+    ax.set_title("ROC Curves, All Models", fontweight="bold")
     ax.legend(loc="lower right", fontsize=10)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1.02)
     plt.tight_layout()
@@ -201,7 +201,7 @@ def plot_pr_curves(results, y_test):
                label=f"Baseline (positive rate = {baseline:.2f})")
     ax.set_xlabel("Recall")
     ax.set_ylabel("Precision")
-    ax.set_title("Precision-Recall Curves — All Models", fontweight="bold")
+    ax.set_title("Precision-Recall Curves, All Models", fontweight="bold")
     ax.legend(loc="lower left", fontsize=10)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1.02)
     plt.tight_layout()
@@ -221,7 +221,7 @@ def plot_feature_importance(rf_model, feature_names):
     ax.set_yticks(range(len(vals)))
     ax.set_yticklabels(feats[::-1])
     ax.set_xlabel("Importance (Gini decrease)")
-    ax.set_title("Random Forest — Feature Importance", fontweight="bold")
+    ax.set_title("Random Forest, Feature Importance", fontweight="bold")
     for bar, v in zip(bars, vals[::-1]):
         ax.text(v + 0.002, bar.get_y() + bar.get_height() / 2,
                 f"{v:.3f}", va="center", fontsize=9)
@@ -256,7 +256,7 @@ def plot_model_comparison(results):
 
 def main():
     print("=" * 60)
-    print("  Clash Royale — Machine Learning Models  (DSA210)")
+    print("  Clash Royale, Machine Learning Models  (DSA210)")
     print("=" * 60)
 
     # ── Load & prepare ────────────────────────────────────────────────────
@@ -272,7 +272,7 @@ def main():
     print(f"  Test : {len(X_test)} samples ({y_test.mean():.1%} win)")
 
     # ── Standardize (required for KNN) ───────────────────────────
-    sep("FEATURE STANDARDIZATION  (StandardScaler — Week 8)")
+    sep("FEATURE STANDARDIZATION  (StandardScaler, Week 8)")
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled  = scaler.transform(X_test)
@@ -294,7 +294,7 @@ def main():
                        scaled_X=X_train_scaled, needs_scaling=needs_scale)
 
     # ── KNN: try multiple k─────────────────
-    sep("KNN — CHOOSING K  ('Best K for Loan Data')")
+    sep("KNN, CHOOSING K  ('Best K for Loan Data')")
     cv = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=RANDOM_STATE)
     best_k, best_score = 1, 0
     print(f"  {'k':>3}  {'CV-acc':>7}  {'CV-AUC':>7}")
@@ -356,14 +356,14 @@ def main():
           f"(AUC = {rdf.loc[best_model_name, 'ROC-AUC']:.4f})")
 
     # ── Detailed report for best model ────────────────────────────────────
-    sep(f"CLASSIFICATION REPORT — {best_model_name}")
+    sep(f"CLASSIFICATION REPORT, {best_model_name}")
     print(classification_report(
         y_test, results[best_model_name]["y_pred"],
         target_names=["Loss", "Win"], digits=4,
     ))
 
     # ── Logistic Regression coefficients (interpretation, Week 9a) ────────
-    sep("LOGISTIC REGRESSION — COEFFICIENT INTERPRETATION")
+    sep("LOGISTIC REGRESSION, COEFFICIENT INTERPRETATION")
     lr = results["Logistic Regression"]["model"]
     coefs = pd.DataFrame({
         "feature":     feature_names,
@@ -381,7 +381,7 @@ def main():
     plot_feature_importance(results["Random Forest"]["model"], feature_names)
     plot_model_comparison(results)
 
-    sep("DONE  —  plots saved to plots/")
+    sep("DONE ,  plots saved to plots/")
 
 
 if __name__ == "__main__":
